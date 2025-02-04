@@ -1576,9 +1576,9 @@ def operate(id, event, qstate, qdata):
                     msg = DNSMessage(qstate.qinfo.qname_str, q_type, RR_CLASS_IN, PKT_QR | PKT_RA)
 
                     if q_type == RR_TYPE_A or q_type == RR_TYPE_ANY:
-                        msg.answer.append("{}. 3600 IN {} {}" .format(q_name, 'A', '0.0.0.0' if nullBlocking else pfb['dnsbl_ipv4']))
+                        msg.answer.append("{}. 3600 IN A {}" .format(q_name, '0.0.0.0' if nullBlocking else pfb['dnsbl_ipv4']))
                     if q_type == RR_TYPE_AAAA or q_type == RR_TYPE_ANY:
-                        msg.answer.append("{}. 3600 IN {} {}" .format(q_name, 'AAAA', '::' if nullBlocking else pfb['dnsbl_ipv6']))
+                        msg.answer.append("{}. 3600 IN AAAA {}" .format(q_name, '::' if nullBlocking else pfb['dnsbl_ipv6']))
                     
                     msg.set_return_msg(qstate)
                     if msg is None or not msg.set_return_msg(qstate):
